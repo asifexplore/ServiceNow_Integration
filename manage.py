@@ -66,7 +66,8 @@ def serviceNowAPI():
 
     # store all server names in an array
     # serverArray = [item['name'] for item in server_data['result']]
-    serverArray = [{"fqdn": server["fqdn"], "address": server["ip_address"]} for server in server_data["result"]]
+    serverArray = [{"fqdn": server["fqdn"], "address": server["ip_address"]} for server in server_data["result"] if
+                   server.get("fqdn") and server.get("ip_address")]
     print(f"serverArray: {serverArray}")
 
     # dbArray = [item['name'] for item in db_data['result']]
@@ -121,4 +122,4 @@ def CyberArkAPI():
 
 if __name__ == '__main__':
     main()
-    print("hello")
+
