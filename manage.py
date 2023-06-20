@@ -62,28 +62,65 @@ def serviceNowAPI():
     server_data = server_response.json()
     db_data = db_response.json()
     network_data = network_response.json()
-    # print(server_data,db_data,network_data)
+    #print(server_data,db_data,network_data)
+
 
     # store all server names in an array
-    # serverArray = [item['name'] for item in server_data['result']]
-    serverArray = [{"fqdn": server["fqdn"], "address": server["ip_address"]} for server in server_data["result"] if
-                   server.get("fqdn") and server.get("ip_address")]
+    #serverArray = [item['name'] for item in server_data['result']]
+
+    for server in server_data["result"]:
+        fqdn = server.get("fqdn", "")
+        address = server.get("ip_address", "")
+        sys_class_name = server.get("sys_class_name", "")
+        os = server.get("os", "")
+        name = server.get("name", "")
+
+        if fqdn and address:
+            serverArray.append({
+                "fqdn": fqdn,
+                "address": address,
+                "sys_class_name": sys_class_name,
+                "os": os,
+                "name": name
+            })
+
     print(f"serverArray: {serverArray}")
 
-    # dbArray = [item['name'] for item in db_data['result']]
+    #dbArray = [{"fqdn": db["fqdn"], "address": db["ip_address"]} for db in db_data["result"] if db.get("fqdn") and db.get("ip_address")]
+    #dbArray = [item['name'] for item in db_data['result']]
+    for db in db_data["result"]:
+        fqdn = db.get("fqdn", "")
+        address = db.get("ip_address", "")
+        sys_class_name = db.get("sys_class_name", "")
+        name = db.get("name", "")
 
-    dbArray = [{"fqdn": db["fqdn"], "address": db["ip_address"]} for db in db_data["result"] if
-               db.get("fqdn") and db.get("ip_address")]
+        if fqdn and address:
+            dbArray.append({
+                "fqdn": fqdn,
+                "address": address,
+                "sys_class_name": sys_class_name,
+                "name": name
+            })
     print(f"dbArray: {dbArray}")
 
-    # networkArray = [item['name'] for item in network_data['result']]
-    networkArray = [{"fqdn": net["fqdn"], "address": net["ip_address"]} for net in network_data["result"] if
-                    net.get("fqdn") and net.get("ip_address")]
-    print(f"networkArray: {networkArray}")
+    #networkArray = [item['name'] for item in network_data['result']]
+    #networkArray = [{"fqdn": net["fqdn"], "address": net["ip_address"]} for net in network_data["result"] if net.get("fqdn") and net.get("ip_address")]
 
-    # print(serverArray)
-    # print(dbArray)
-    # print(networkArray)
+    for net in network_data["result"]:
+        fqdn = net.get("fqdn", "")
+        address = net.get("ip_address", "")
+        device_type = net.get("device_type", "")
+        name = net.get("name", "")
+
+        if fqdn and address:
+            networkArray.append({
+                "fqdn": fqdn,
+                "address": address,
+                "device_type": device_type,
+                "name": name
+            })
+
+    print(f"networkArray: {networkArray}")
 
 def CyberArkAPI():
     # Set the base URL for the CyberArk REST API
