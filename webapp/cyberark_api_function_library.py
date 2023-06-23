@@ -109,6 +109,7 @@ def addAccount():
         print("Failed to upload account. Status code:", response.status_code)
         print("Error message:", response.text)
 
+
 def check_duplicate_Account(username, address, safe):
     cyberark_array = getAccountDetails()
 
