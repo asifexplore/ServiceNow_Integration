@@ -127,8 +127,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
               <div class="small-box bg-success">
               <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
-              <p>Accounts Onboarded </p>
+              <h3>3<sup style="font-size: 20px"></sup></h3>
+              <p>Accounts Onboarded this month</p>
               </div>
               <div class="icon">
               <i class="ion ion-stats-bars"></i>
@@ -140,7 +140,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
               <div class="small-box bg-info">
               <div class="inner">
-              <h3>150</h3>
+              <h3>{{totalCounttoOnboard}}</h3>
               <p>To Onboard</p>
               </div>
               <div class="icon">
@@ -153,7 +153,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                 <div class="small-box bg-danger">
                 <div class="inner">
-                <h3>65</h3>
+                <h3>0</h3>
                 <p>To Offboard</p>
                 </div>
                 <div class="icon">
@@ -164,6 +164,103 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </div>
           </div>
         </div>
+
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Accounts to be Onboarded</h3>
+
+              <div class="card-tools">
+                <div class="input-group">
+                  <i class="fas fa-refresh"></i>
+                </div>
+                <div class="input-group input-group-sm" style="width: 150px;">
+                  <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                  <div class="input-group-append">
+                    <button type="submit" class="btn btn-default">
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0" >
+              <table class="table table-head-fixed text-nowrap">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Addr</th>
+                    <th>OS</th>
+                    <th>FQDN</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for acc in array %}
+                  <tr>
+                    <td>{{ acc.name }}</td>
+                    <td>{{ acc.address }}</td>
+                    <td>{{ acc.type }}</td>
+                    <td><span class="tag tag-success">{{ acc.fqdn }}</span></td>
+                    <td><button type="button" class="btn btn-block btn-success">Onboard</button></td>
+                  </tr>
+                  {% endfor %}
+
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Accounts to be Offboarded</h3>
+
+              <div class="card-tools">
+                <div class="input-group">
+                  <i class="fas fa-refresh"></i>
+                </div>
+                <div class="input-group input-group-sm" style="width: 150px;">
+                  <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                  <div class="input-group-append">
+                    <button type="submit" class="btn btn-default">
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0" >
+              <table class="table table-head-fixed text-nowrap">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Addr</th>
+                    <th>OS</th>
+                    <th>FQDN</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>No Accounts to Offboard</td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+
           <!-- /.row -->
         </div><!-- /.container-fluid -->
       </div>
@@ -182,10 +279,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container">
       <!-- To the right -->
       <div class="float-right d-none d-sm-inline">
-        Anything you want
       </div>
       <!-- Default to the left -->
-      <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+      <!-- <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved. -->
     </footer>
   </div>
 </div>
