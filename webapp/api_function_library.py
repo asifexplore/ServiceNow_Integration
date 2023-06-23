@@ -5,6 +5,19 @@ import requests
 # db = 'https://dev108716.service-now.com/api/now/table/cmdb_ci_database'
 # network_device = 'https://dev108716.service-now.com/api/now/table/cmdb_ci_netgear'
 
+"""
+Install Status:
+Retired - 7 
+Installed - 1 
+Maintenance - 3
+
+Operational Status:
+Operational - 1
+Non Operational - 2
+Retired - 6 
+
+"""
+
 # Eg. User name="admin", Password="2f-ShWQev@A7".
 user = 'admin'
 pwd = 'j/5+GTMjhTh0'
