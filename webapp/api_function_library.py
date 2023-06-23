@@ -6,6 +6,8 @@ import requests
 # network_device = 'https://dev108716.service-now.com/api/now/table/cmdb_ci_netgear'
 
 """
+Knowledge on status messages: To filter message status by numbers
+
 Install Status:
 Retired - 7 
 Installed - 1 
