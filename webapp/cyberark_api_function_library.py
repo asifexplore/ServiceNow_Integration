@@ -109,12 +109,37 @@ def addAccount():
         print("Failed to upload account. Status code:", response.status_code)
         print("Error message:", response.text)
 
+def removeAccount(username, address, safe):
+    account_id = check_duplicate_Account(username, address, safe)
+    if account_id is None:
+        print("Account not found. Exiting the program.")
+        return
+
+    access_token = authentication()
+
+    api_headers = {
+        "Authorization": f"Bearer {access_token}",
+        "Content-Type": "application/json"
+    }
+
+    delete_url = f"{base_url}/{account_endpoint}/{account_id}"
+
+    # Send the DELETE request to delete the account
+    response = requests.delete(delete_url, headers=api_headers, verify=False)
+
+    # Check the response status code
+    if response.status_code == 204:
+        print("Account deleted successfully.")
+    else:
+        print("Failed to delete account. Status code:", response.status_code)
+        print("Error message:", response.text)
 
 def check_duplicate_Account(username, address, safe):
     cyberark_array = getAccountDetails()
 
     for record in cyberark_array:
         if record["username"] == username and record["address"] == address and record["safename"] == safe:
+            return record.get("accountID")
             print("Error: Duplicate account found.")
             return True
 
