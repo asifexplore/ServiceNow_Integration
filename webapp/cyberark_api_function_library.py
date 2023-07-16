@@ -142,6 +142,12 @@ def bulkAccountUpload():
             ]
         }
 
+    # Checking for duplicate accounts before sending the POST request
+    for account in accounts_list['accountsList']:
+        if check_duplicate_Account(account['UserName'], account['Address'], account['SafeName']):
+            print('Duplicate account found. Skipping account:', account['UserName'])
+            continue
+
     # Step 4: Send the API request
     response = requests.post(base_url+bulk_upload_endpoint, headers=api_headers, json=accounts_list, verify=False)
     response.raise_for_status()
