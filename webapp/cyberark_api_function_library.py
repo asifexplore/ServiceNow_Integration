@@ -15,6 +15,7 @@ client_secret = "Cyberark1"
 identity_auth_endpoint = "https://aaw4349.id.cyberark.cloud/oauth2/platformtoken"
 base_url = "https://apjsesadesh.privilegecloud.cyberark.cloud/PasswordVault/"
 account_endpoint = "/API/Accounts"
+bulk_upload_endpoint = "/API/bulkactions/accounts/"
 
 cyberark_array = []
 
@@ -108,6 +109,50 @@ def addAccount():
     else:
         print("Failed to upload account. Status code:", response.status_code)
         print("Error message:", response.text)
+
+
+def bulkAccountUpload():
+
+    access_token = authentication()
+
+    api_headers = {
+        "Authorization": f"Bearer {access_token}",
+        "Content-Type": "application/json"
+    }
+
+
+    accounts_list = {
+            "accountsList": [
+                {
+                    "AccountName": "Administrator",
+                    "UserName": "JSmith",
+                    "SafeName": "TestSfe",
+                    "PlatformID": "WinServerLocal",
+                    "Address" : "10.10.10.9",
+                    "Password": "Cyberark1"
+                },
+                {
+                    "AccountName": "OracleAdmin",
+                    "UserName": "admin",
+                    "SafeName": "TestSfe",
+                    "PlatformID": "WinServerLocal",
+                    "Address": "192.168.53.12",
+                    "Password": "Cyberark1"
+                }
+            ]
+        }
+
+    # Step 4: Send the API request
+    response = requests.post(base_url+bulk_upload_endpoint, headers=api_headers, json=accounts_list, verify=False)
+    response.raise_for_status()
+
+    # Check the response status code
+    if response.status_code == 200:
+        print("Processing upload.", response.text)
+    else:
+        print("Failed to upload account. Status code:", response.status_code)
+        print("Error message:", response.text)
+
 
 def removeAccount(username, address, safe):
     account_id = check_duplicate_Account(username, address, safe)
