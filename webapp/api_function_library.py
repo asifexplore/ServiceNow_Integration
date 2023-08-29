@@ -5,6 +5,21 @@ import requests
 # db = 'https://dev108716.service-now.com/api/now/table/cmdb_ci_database'
 # network_device = 'https://dev108716.service-now.com/api/now/table/cmdb_ci_netgear'
 
+"""
+Knowledge on status messages: To filter message status by numbers
+
+Install Status:
+Retired - 7 
+Installed - 1 
+Maintenance - 3
+
+Operational Status:
+Operational - 1
+Non Operational - 2
+Retired - 6 
+
+"""
+
 # Eg. User name="admin", Password="2f-ShWQev@A7".
 user = 'admin'
 pwd = 'j/5+GTMjhTh0'
@@ -32,6 +47,9 @@ def getServer():
         sys_class_name = server.get("sys_class_name", "")
         os = server.get("os", "")
         name = server.get("name", "")
+        install_status = server.get("install_status", "")
+        operational_status = server.get("operational_status", "")
+        sys_updated_on = server.get("sys_updated_on", "")
 
         if fqdn and address:
             serverArray.append({
@@ -39,7 +57,10 @@ def getServer():
                 "address": address,
                 "sys_class_name": sys_class_name,
                 "type": os,
-                "name": name
+                "name": name,
+                "install_status": install_status,
+                "operational_status": operational_status,
+                "sys_updated_on": sys_updated_on
             })
     return serverArray
 
@@ -57,13 +78,19 @@ def getDB():
         address = db.get("ip_address", "")
         sys_class_name = db.get("sys_class_name", "")
         name = db.get("name", "")
+        install_status = db.get("install_status", "")
+        operational_status = db.get("operational_status", "")
+        sys_updated_on = db.get("sys_updated_on", "")
 
         if fqdn and address:
             dbArray.append({
                 "fqdn": fqdn,
                 "address": address,
                 "type": sys_class_name,
-                "name": name
+                "name": name,
+                "install_status": install_status,
+                "operational_status": operational_status,
+                "sys_updated_on": sys_updated_on
             })
     return dbArray
 
@@ -82,13 +109,19 @@ def getNetwork():
         address = net.get("ip_address", "")
         device_type = net.get("device_type", "")
         name = net.get("name", "")
+        install_status = net.get("install_status", "")
+        operational_status = net.get("operational_status", "")
+        sys_updated_on = net.get("sys_updated_on", "")
 
         if fqdn and address:
             networkArray.append({
                 "fqdn": fqdn,
                 "address": address,
                 "type": device_type,
-                "name": name
+                "name": name,
+                "install_status": install_status,
+                "operational_status": operational_status,
+                "sys_updated_on": sys_updated_on
             })
     return networkArray
 
