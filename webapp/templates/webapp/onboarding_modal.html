@@ -1,0 +1,79 @@
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#onboardModal">Launch modal</button> -->
+
+<div class="modal fade" id="onboardModal" tabindex="-1" role="dialog" aria-labelledby="onboardModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Onboarding Accounts</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <form>
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="accountName">Account Name</label>
+            <input type="text" class="form-control" id="accountName" placeholder="Enter Account Name">
+            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+          </div>
+          <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" class="form-control" id="address" placeholder="Address" readonly>
+            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+          </div>
+          <div class="form-group">
+            <label for="FQDN">FQDN</label>
+            <input type="text" class="form-control" id="FQDN" placeholder="FQDN" readonly>
+            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+          </div>
+          <div class="form-group">
+            <label for="OS">OS</label>
+            <input type="text" class="form-control" id="OS" placeholder="Enter OS Name" readonly>
+            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+          </div>
+          <!-- Platform  -->
+          <div class="form-group">
+            <label for="platformDropdown">Platform</label>
+            <select class="form-control" id="platformDropdown">
+              <!-- <option>1</option> -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="safeDropdown">Safe</label>
+            <select class="form-control" id="safeDropdown">
+              <!-- <option>1</option> -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="username">UserName</label>
+            <input type="text" class="form-control" id="username" placeholder="Enter Username">
+            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+          </div>
+          
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password">
+          </div>
+
+        </form>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="modalSubmit" class="btn btn-primary">Onboard</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- <div class="container text-center text-white">
+  <h2 class="text-info">Bootstrap 4 Modal</h2>
+  <p>An example of the <code>.modal</code> component.<br>
+    Click the button above to open the modal.</p>
+  <a target="_blank" href="https://getbootstrap.com/docs/4.0/components/modal/">docs/4.0/components/modal/</a>
+</div> -->
